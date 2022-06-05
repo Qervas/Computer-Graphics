@@ -4,6 +4,7 @@
 #pragma once
 
 #include"ve_window.hpp"
+#include "ve_pipeline.hpp"
 namespace ve{
     class FirstApp{
     public:
@@ -12,6 +13,12 @@ namespace ve{
         void run();
     private:
         VeWindow veWindow{WIDTH, HEIGHT, "Hello, Vulkan"};
+        VeDevice veDevice{veWindow};
+        VePipeline vePipeline{veDevice,
+                              "shaders/simple_shader.vert.spv",
+                              "shaders/simple_shader.frag.spv",
+                              VePipeline::defaultPipelineConfigInfo(WIDTH, HEIGHT)};
+        //Executable is under ${workspaceFolder}/bin/
     };
 
 
