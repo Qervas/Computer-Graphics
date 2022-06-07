@@ -8,10 +8,19 @@
 #include<vector>
 namespace ve{
 
-struct PipelineConfigInfo{
-
-
-
+struct PipelineConfigInfo {
+  VkViewport viewport;
+  VkRect2D scissor;
+  VkPipelineViewportStateCreateInfo viewportInfo;
+  VkPipelineInputAssemblyStateCreateInfo inputAssemblyInfo;
+  VkPipelineRasterizationStateCreateInfo rasterizationInfo;
+  VkPipelineMultisampleStateCreateInfo multisampleInfo;
+  VkPipelineColorBlendAttachmentState colorBlendAttachment;
+  VkPipelineColorBlendStateCreateInfo colorBlendInfo;
+  VkPipelineDepthStencilStateCreateInfo depthStencilInfo;
+  VkPipelineLayout pipelineLayout = nullptr;
+  VkRenderPass renderPass = nullptr;
+  uint32_t subpass = 0;
 };
 
 
@@ -21,7 +30,7 @@ public:
     void operator=(const VePipeline&) = delete;
     VePipeline(VeDevice& device, const std::string& vertFilepath, const std::string& fragFilepath,
                const PipelineConfigInfo& configInfo);
-    ~VePipeline(){}
+    ~VePipeline();
     static  PipelineConfigInfo defaultPipelineConfigInfo(uint32_t width, uint32_t height);
 
 
